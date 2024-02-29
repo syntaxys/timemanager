@@ -776,7 +776,12 @@ label {
 
 	.latest-headline {
 		margin-bottom: 24px;
-	}
+		font-weight:bold;
+		}
+	.timemanager-pjax-link h4 {
+		margin: 8px 0;
+		font-weight:bold;
+		}
 
 	.filter-button {
 		padding: 6px 12px 6px 34px;

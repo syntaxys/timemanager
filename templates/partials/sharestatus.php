@@ -16,7 +16,7 @@ $l = Util::getL10N('timemanager');
 <?php if (isset($_['entity']->sharees) && count($_['entity']->sharees) > 0) { ?>
 	&nbsp;&middot;&nbsp;
 	<span>
-		<?php p($l->t('shared with:')); ?>
+		<?php p($l->t('shared with').':'); ?>
 		<ul class="existing-sharees compact">
 			<?php foreach($_['entity']->sharees as $sharee) { ?>
 				<li>

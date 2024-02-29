@@ -58,15 +58,47 @@ $l = Util::getL10N('timemanager');
 		<div class="section">
 			<div class="tm_item-list">
 				<h2 class="list-title"><?php p($l->t('Time entries')); ?></h2>
+				<p><?php p($l->t('Select a task to show time entries for')); ?></p>
+				<form action="" method="get">
+					<?php if (count($_['tasks']) > 0) { ?>
+						<select name="task">
+							<?php foreach ($_['tasks'] as $task) {
+								// Look up project for task
+								$project = array_reduce($_['projects'], function ($carry, $oneProject) use (&$task) {
+									if ($oneProject->getUuid() === $task->getProjectUuid()) {
+										$carry = $oneProject;
+									}
+									return $carry;
+								});
+								// Look up client for project
+								$client = array_reduce($_['clients'], function ($carry, $oneClient) use (&$project) {
+									if ($oneClient->getUuid() === $project->getClientUuid()) {
+										$carry = $oneClient;
+									}
+									return $carry;
+								});
+							?>
+								<option value="<?php p($task->getUuid()); ?>"><?php p($client->getName() . ' › ' . $project->getName() . ' › ' . $task->getName()); ?></option>
+							<?php } ?>
+						</select>
+						<button type="submit" class="btn"><?php p($l->t('Show')); ?></button>
+					<?php } else { ?>
+						<p><?php p($l->t('No tasks created yet. Go ahead and create one.')); ?></p>
+					<?php } ?>
+				</form>
+				<p><em><?php p($l->t('Select a task first to show the times for this task.')); ?></em></p>
+
 				<?php if ($_['task']) { ?>
 					<span data-svelte="TimeEditorDialog.svelte"></span>
 				<?php } ?>
 				<span data-store="<?php p($_['store']); ?>"></span>
+
 				<?php if (!$_['task']) { ?>
 					<div class="tm_item-list space-bottom">
 						<?php print_unescaped($this->inc('partials/latest')); ?>
 					</div>
 				<?php } ?>
+
 				<?php if (!$_['task']) { ?>
 					<p><?php p($l->t('Select a task to show time entries for')); ?></p>
 					<form action="" method="get">

@@ -6,12 +6,12 @@ $urlGenerator = \OC::$server->getURLGenerator();
 $l = Util::getL10N('timemanager');
 ?>
 
-<h2 class="latest-headline">
+<h3 class="latest-headline">
 	<?php p($l->t('Latest time entries')); ?>
 	<?php if ($_['hasSharedTimeEntries']) { ?>
 		<span data-svelte="UserFilterButton.svelte"></span>
 	<?php } ?>
-</h2>
+</h3>
 
 <?php if ($_['hasSharedTimeEntries']) { ?>
 	<span data-svelte="UserFilterButton.svelte"></span>
@@ -21,7 +21,7 @@ $l = Util::getL10N('timemanager');
 <?php foreach($_['latestEntries'] as $entry) { ?>
 	<div class="tm_item-row with-link">
 		<a class="timemanager-pjax-link" href="<?php echo $urlGenerator->linkToRoute('timemanager.page.times'); ?>?task=<?php echo $entry->task->getUuid(); ?>">
-			<h3><?php p($entry->client->getName()); ?> › <?php p($entry->project->getName()); ?> › <?php p($entry->task->getName()); ?></h3>
+			<h4><?php p($entry->client->getName()); ?> › <?php p($entry->project->getName()); ?> › <?php p($entry->task->getName()); ?></h4>
 			<div class="tm_item-excerpt">
 				<span data-datetime="<?php p($entry->time->getStartFormatted("c")); ?>"><?php p($entry->time->getStartLocalized()); ?></span>
 				&nbsp;&middot;&nbsp;<span><?php p($entry->time->getDurationInHours()); ?> <?php p($l->t('hrs.')); ?></span>

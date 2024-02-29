@@ -568,7 +568,11 @@ label {
   #content.app-timemanager .tools form {
     padding: 36px 0 48px; }
   #content.app-timemanager .latest-headline {
-    margin-bottom: 24px; }
+    margin-bottom: 24px;
+    font-weight:bold; }
+  #content.app-timemanager .timemanager-pjax-link h4 {
+    margin: 8px 0;
+    font-weight:bold; }
   #content.app-timemanager .filter-button {
     padding: 6px 12px 6px 34px;
     margin-left: 8px;
